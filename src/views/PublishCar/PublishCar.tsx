@@ -37,9 +37,9 @@ export default function Checkout() {
         </Typography>
 
         <Stepper
-          activeStep={activeStep >= steps.length ? steps.length - 1 : activeStep}
-          sx={{ pt: 3, pb: 5 }}
           alternativeLabel
+          sx={{ pt: 3, pb: 5 }}
+          activeStep={activeStep >= steps.length ? steps.length - 1 : activeStep}
         >
           {steps.map((label) => (
             <Step key={label} completed={false}>
