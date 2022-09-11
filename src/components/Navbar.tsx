@@ -15,7 +15,7 @@ export default function Navbar() {
     >
       <Toolbar>
         <Typography variant="h6" color="inherit" noWrap>
-          Intelimotors - Prueba de Jose Fabio
+          Intelimotor - Prueba de Jose Fabio
         </Typography>
       </Toolbar>
     </AppBar>
