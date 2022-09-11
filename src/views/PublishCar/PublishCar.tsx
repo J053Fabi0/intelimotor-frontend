@@ -1,10 +1,11 @@
 import Review from "./Review";
+import { numericFormatter } from "react-number-format";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Step from "@mui/material/Step";
 import Paper from "@mui/material/Paper";
 import AddressForm from "./AddressForm";
-import Button from "@mui/material/Button";
+import Button from "@mui/lab/LoadingButton";
 import Stepper from "@mui/material/Stepper";
 import StepLabel from "@mui/material/StepLabel";
 import Container from "@mui/material/Container";
@@ -19,8 +20,13 @@ export default function Checkout() {
     description: "",
     price: undefined as unknown as number,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleNext = () => setActiveStep(activeStep + 1);
+  const handleNext = () => {
+    if (activeStep === 1) {
+      setIsLoading(true);
+    } else setActiveStep(activeStep + 1);
+  };
   const handleBack = () => setActiveStep(activeStep - 1);
 
   const handleOnSubmit = async (a: PublishCarQuery) =>
@@ -42,7 +48,14 @@ export default function Checkout() {
           />
         );
       case 1:
-        return <Review />;
+        return (
+          <Review
+            data={[
+              ["Precio", "$" + numericFormatter(publishCarQuery.price.toString(), { thousandSeparator: true })],
+              ["Descripción", publishCarQuery.description],
+            ]}
+          />
+        );
       case 2:
       default:
         return null;
@@ -85,10 +98,12 @@ export default function Checkout() {
             {activeStep >= 1 ? (
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <>
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
-                  </Button>
-                  <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
+                  {isLoading ? null : (
+                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                      Back
+                    </Button>
+                  )}
+                  <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }} loading={isLoading}>
                     {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </>
