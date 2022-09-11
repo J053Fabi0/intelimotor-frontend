@@ -27,6 +27,7 @@ const initPublishCarQuery = {
 
 export default function Checkout() {
   const [ssName, setSsName] = useState("");
+  const [isError, setIsError] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [publicationURL, setPublicationURL] = useState("");
@@ -41,14 +42,21 @@ export default function Checkout() {
   const handleNext = async (step = activeStep + 1) => {
     // Si es el paso 2, publicar el carro
     if (activeStep === 2) {
+      setIsError(false);
       setIsLoading(true);
-      await handlePublishCar();
+      try {
+        await handlePublishCar();
+      } catch (_) {
+        setIsError(true);
+      }
       setIsLoading(false);
     }
     setActiveStep(step);
   };
+
   const handleBack = (step = activeStep - 1, resetValues = false) => {
     setActiveStep(step);
+
     if (resetValues) {
       setSsName("");
       setPublicationURL("");
@@ -68,12 +76,16 @@ export default function Checkout() {
         );
       case 2:
         return (
-          <Review
-            data={[
-              ["Precio", "$" + numericFormatter(publishCarQuery.price.toString(), { thousandSeparator: true })],
-              ["Descripción", publishCarQuery.description],
-            ]}
-          />
+          <>
+            <Review
+              data={[
+                ["Precio", "$" + numericFormatter(publishCarQuery.price.toString(), { thousandSeparator: true })],
+                ["Descripción", publishCarQuery.description],
+              ]}
+            />
+            {isError ? <Alert severity="error">Hubo un error. Puedes intentarlo de nuevo.</Alert> : null}
+            {isLoading ? <Alert severity="info">El proceso puede tomar hasta 1 minuto.</Alert> : null}
+          </>
         );
       case 3:
         return (
