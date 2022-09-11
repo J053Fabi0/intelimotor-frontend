@@ -12,7 +12,7 @@ export default function Review({ data }: { data: [string, any][] }) {
       <Box ml={1}>
         {data.map(([key, value]) => (
           <Fragment key={key}>
-            <Typography fontWeight="bold">{key}</Typography>
+            <Typography fontWeight={500}>{key}</Typography>
             <Typography mb={2} ml={1}>
               {value}
             </Typography>

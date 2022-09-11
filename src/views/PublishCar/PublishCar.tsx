@@ -100,11 +100,11 @@ export default function Checkout() {
                 <>
                   {isLoading ? null : (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
+                      Regresar
                     </Button>
                   )}
                   <Button variant="contained" onClick={handleNext} sx={{ mt: 3, ml: 1 }} loading={isLoading}>
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                    {activeStep === 1 ? "Publicar" : "Siguiente"}
                   </Button>
                 </>
               </Box>

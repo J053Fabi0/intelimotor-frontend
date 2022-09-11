@@ -89,7 +89,7 @@ export default function AddressForm({
 
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Button variant="contained" onClick={submitForm} sx={{ mt: 3, ml: 1 }}>
-              Next
+              Siguiente
             </Button>
           </Box>
         </FormikForm>
