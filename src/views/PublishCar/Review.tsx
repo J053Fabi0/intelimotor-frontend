@@ -14,7 +14,13 @@ export default function Review({ data }: { data: [string, any][] }) {
           <Fragment key={key}>
             <Typography fontWeight={500}>{key}</Typography>
             <Typography mb={2} ml={1}>
-              {value}
+              {/* Este map transforma los saltos de línea en <br/> */}
+              {(value.toString() as string).split("\n").map((value, i, a) => (
+                <Fragment key={i}>
+                  {value}
+                  {i === a.length - 1 ? null : <br />}
+                </Fragment>
+              ))}
             </Typography>
           </Fragment>
         ))}
