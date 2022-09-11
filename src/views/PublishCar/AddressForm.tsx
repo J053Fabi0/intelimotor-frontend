@@ -46,6 +46,7 @@ export default function AddressForm({
               >
                 <InputLabel htmlFor="input-name">Precio</InputLabel>
                 <NumericFormat
+                  autoFocus
                   name="price"
                   id="input-name"
                   decimalScale={2}
