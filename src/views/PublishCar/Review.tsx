@@ -1,7 +1,6 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { Fragment } from "react";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import ListItemText from "@mui/material/ListItemText";
 
 export default function Review({ data }: { data: [string, any][] }) {
   return (
@@ -9,14 +8,17 @@ export default function Review({ data }: { data: [string, any][] }) {
       <Typography variant="h6" gutterBottom>
         Confirma la información
       </Typography>
-      <List disablePadding>
+
+      <Box ml={1}>
         {data.map(([key, value]) => (
-          <ListItem key={key} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={key} />
-            <Typography variant="body2">{value}</Typography>
-          </ListItem>
+          <Fragment key={key}>
+            <Typography fontWeight="bold">{key}</Typography>
+            <Typography mb={2} ml={1}>
+              {value}
+            </Typography>
+          </Fragment>
         ))}
-      </List>
+      </Box>
     </>
   );
 }
