@@ -1,4 +1,7 @@
-## 👉 Ejemplo en línea: [intelimotor.josefabio.com](https://intelimotor.josefabio.com)
+![image](https://github.com/user-attachments/assets/7edd5a6e-579a-4816-9e39-58d2e7a78499)
+![image](https://github.com/user-attachments/assets/2c08851d-5b18-4834-ab0e-336a5014fc87)
+![image](https://github.com/user-attachments/assets/48345306-0342-4cce-a760-e8cf5028c935)
+
 
 # Compilarlo localmente
 
